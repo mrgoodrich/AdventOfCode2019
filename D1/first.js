@@ -21,9 +21,11 @@ const matches = input.matchAll(new RegExp(regex));
 // match[0]: entire match
 // match[1..N]: group
 
+let s = 0;
 for (const match of matches) {
-  console.log(match[0]);
+  s += Math.floor(parseInt(match[0])/3) - 2;
 }
+console.log(s);
 
 
 // ----------- GUESSES -------------------------
