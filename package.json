@@ -1,0 +1,24 @@
+{
+  "name": "adventofcode2019",
+  "version": "1.0.0",
+  "description": "Focusing on speed over quality and readability. adventofcode.com/2019",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrgoodrich/AdventOfCode2019.git"
+  },
+  "author": "Matt Goodrich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrgoodrich/AdventOfCode2019/issues"
+  },
+  "homepage": "https://github.com/mrgoodrich/AdventOfCode2019#readme",
+  "dependencies": {
+    "collections": "^5.1.9",
+    "fs": "0.0.1-security",
+    "itertools": "^1.5.1"
+  }
+}
