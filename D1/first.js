@@ -12,8 +12,8 @@ const isTest = false;
 const nonWhitespace = /\S+/g;
 const positiveOrNegativeNumber = /(-?)(\d+)/g;
 const numberAndWord = /(-?)(\d+) \S+/g;
-const entireLine = /[\s\S]+/g
-//g = global, i = case insensitive
+const entireLine = /^.*$/gm
+
 const regex = entireLine;
 const matches = input.matchAll(new RegExp(regex));
 
@@ -24,7 +24,6 @@ const matches = input.matchAll(new RegExp(regex));
 for (const match of matches) {
   console.log(match[0]);
 }
-
 
 
 // ----------- GUESSES -------------------------
