@@ -17,6 +17,8 @@ for (const entry of m1.entries()) {
   console.log(entry[1]);
 }
 
+const counter = new pycollections.Counter('abc'.split('a'));
+
 /*
   g = global, i = case insensitive, m = multiline (^ and $ match start/end of LINE)
   [^a-z]+ anything except a-z

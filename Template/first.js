@@ -2,6 +2,7 @@
 const fs = require('fs');
 // const {all, any, contains, enumerate, filter, iter, map, max, min, range, reduce, reduce_, sorted, sum, zip, zip3} = require('itertools');
 // const Map = require('collections/map');
+// const pycollections = require('pycollections');
 
 // ----------- INPUT SETUP --------------------
 const input = fs.readFileSync('inputs/input', 'utf8');
