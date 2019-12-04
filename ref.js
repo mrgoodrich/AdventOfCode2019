@@ -17,7 +17,14 @@ for (const entry of m1.entries()) {
   console.log(entry[1]);
 }
 
-const counter = new pycollections.Counter('abc'.split('a'));
+const counter = new pycollections.Counter(); // ...Counter('abc'.split('a')); the split is making the string into array
+// counter.update(['a', 'a', 32, 'false', false, NaN]);
+// counter.items();  // counts distinct items     [['a', 2], [32, 1], ['false', 1], [false, 1], [NaN, 1]]
+// counter.elements();  // gets array of unique items     ['a', 'a', 32, 'false', false, NaN]
+// counter.get('a'); // can get count for specific element  2
+// counter.update(['a', 'a', 'b']);  // can add elements - now 4 a's
+// counter.subtract({'a': 3});   // can remove elements - now 1 a's. can make count negative too
+// counter.mostCommon(2);  // gets [param] of most common elements i.e. maybe [['c', 3], ['b', 2]]
 
 let a = new Set([1,2,3]);
 let b = new Set([4,3,2]);
