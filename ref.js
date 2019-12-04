@@ -57,5 +57,6 @@ function union(a, b) {
   $ - end of string
   \b - word boundary
   \B - non-word boundary
+  (?:) - non capture group, i.e. /(?:Jane|John|Alison)\s(.*?)\s(?:Smith|Smuth)/ only captures middle name
 */
 
