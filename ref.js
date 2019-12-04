@@ -19,6 +19,23 @@ for (const entry of m1.entries()) {
 
 const counter = new pycollections.Counter('abc'.split('a'));
 
+let a = new Set([1,2,3]);
+let b = new Set([4,3,2]);
+let union = new Set([...a, ...b]); // [...a, ...b] is the same as [...a].concat([...b])   {1,2,3,4}
+let intersection = new Set([...a].filter(x => b.has(x))); // {2,3}
+let difference = new Set([...a].filter(x => !b.has(x))); // {1}
+// If large use
+function union(a, b) {
+  const result = new Set();
+  a.forEach(value => {
+    result.add(value);
+  });
+  b.forEach(value => {
+    result.add(value);
+  });
+  return result;
+}
+
 /*
   g = global, i = case insensitive, m = multiline (^ and $ match start/end of LINE)
   [^a-z]+ anything except a-z
