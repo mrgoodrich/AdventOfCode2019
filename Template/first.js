@@ -8,8 +8,6 @@ const fs = require('fs');
 const input = fs.readFileSync('inputs/input', 'utf8');
 
 // ----------- TESTING AND REGEX -----®---------
-const isTest = false;
-
 const nonWhitespace = /\S+/g;
 const positiveOrNegativeNumber = /(-?)(\d+)/g;
 const numberAndWord = /(-?)(\d+) \S+/g;
