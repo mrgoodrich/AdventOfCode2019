@@ -11,17 +11,16 @@ const input = fs.readFileSync('inputs/input', 'utf8');
 const nonWhitespace = /\S+/g;
 const positiveOrNegativeNumber = /(-?)(\d+)/g;
 const numberAndWord = /(-?)(\d+) \S+/g;
-const entireLine = /^.*$/gm
+const entireLine = /^(\S*)(?:\n)/gm
 
 const regex = entireLine;
-const matches = input.matchAll(new RegExp(regex));
 
 // ----------- SOLUTION ------------------------
-// match[0]: entire match
-// match[1..N]: group
-
-for (const match of matches) {
-  console.log(match[0]);
+let result;
+while((result = regex.exec(input)) !== null) {
+  const entireMatch = result[0]; // has new line char if entireLine
+  const firstGroup = result[1];
+  console.log(result[1]);
 }
 
 
