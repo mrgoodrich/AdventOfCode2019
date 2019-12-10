@@ -19,7 +19,7 @@
   "dependencies": {
     "collections": "^5.1.9",
     "fs": "0.0.1-security",
-    "itertools": "^1.5.1",
+    "iter-tools": "^6.2.6",
     "pycollections": "^0.9.0"
   }
 }
