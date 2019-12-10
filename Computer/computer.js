@@ -14,7 +14,14 @@ const isTest = false;
 // ----------- SOLUTION ------------------------
 
 const MAX_NUM_INTCODE_PARAMS = 3;
-const ADDITIONAL_MEMORY = 30446338;
+
+function sliceDict(dict, startKey, length) {
+  let slice = [];
+  for (let key = startKey; key < startKey + length; key++) {
+    slice.push(dict.get(key));
+  }
+  return slice;
+}
 
 class Computer {
   constructor(name, inputStream, outputStream) {
@@ -29,14 +36,10 @@ class Computer {
   }
 
   _initMemory() {
-    this.memory = [];
+    this.memory = new pycollections.DefaultDict(() => 0);
 
     for (let address = 0; address < input.length; address ++) {
-      this.memory.push(parseInt(input[address]));
-    }
-
-    for (let ndx = 0; ndx < ADDITIONAL_MEMORY; ndx++) {
-      this.memory.push(0);
+      this.memory.set(address, parseInt(input[address]));
     }
   }
   hasInput() {
@@ -64,11 +67,11 @@ class Computer {
   _resolveVal(mode, param) {
     switch (mode) {
       case 0:
-        return this.memory[param];
+        return this.memory.get(param);
       case 1:
         return param;
       case 2:
-        return this.memory[this.relativeBase + param];
+        return this.memory.get(this.relativeBase + param);
       default:
         console.log('Unsupported mode: ' + mode);
         process.exit();
@@ -90,9 +93,9 @@ class Computer {
   }
 
   runInstruction() {
-    const code = this.memory[this.instrPointer];
+    const code = this.memory.get(this.instrPointer);
     const codeStr = code + '';
-    const intcode = code == 99 ? 99 : parseInt(
+    const intcode = parseInt(
       (codeStr.length > 1 ? codeStr[codeStr.length - 2] : '0')
        + codeStr[codeStr.length - 1]);
 
@@ -100,7 +103,7 @@ class Computer {
       map((offset) => codeStr.length > (offset - 1) ? parseInt(codeStr[codeStr.length - offset]) : 0,
       range({start: 3, end: 6})
     ));
-    const params = this.memory.slice(this.instrPointer + 1, this.instrPointer + MAX_NUM_INTCODE_PARAMS + 1);
+    const params = sliceDict(this.memory, this.instrPointer + 1, MAX_NUM_INTCODE_PARAMS);
 
     const targets = toArray(
       map(
@@ -115,18 +118,18 @@ class Computer {
 
     switch (intcode) {
       case 1:
-        this.memory[targets[2]] = vals[0] + vals[1];
+        this.memory.set(targets[2], vals[0] + vals[1]);
         this.instrPointer += 4;
         break;
       case 2:
-        this.memory[targets[2]] = vals[0] * vals[1];
+        this.memory.set(targets[2], vals[0] * vals[1]);
         this.instrPointer += 4;
         break;
       case 3:
         if (!this.hasInput()) {
           return;
         }
-        this.memory[targets[0]] = this.readInput();
+        this.memory.set(targets[0], this.readInput());
         this.instrPointer += 2;
         break;
       case 4:
@@ -148,11 +151,11 @@ class Computer {
         }
         break;
       case 7:
-        this.memory[targets[2]] = (vals[0] < vals[1]) ? 1 : 0;
+        this.memory.set(targets[2], vals[0] < vals[1] ? 1 : 0);
         this.instrPointer += 4;
         break;
       case 8:
-        this.memory[targets[2]] = (vals[0] == vals[1]) ? 1 : 0;
+        this.memory.set(targets[2], vals[0] == vals[1] ? 1 : 0);
         this.instrPointer += 4;
         break;
       case 9:
@@ -175,5 +178,6 @@ while (!computer.hasHalted()) {
   computer.runInstruction();
 }
 console.log(computer.getOutput());
+
 
 // ----------- GUESSES --------------------------
