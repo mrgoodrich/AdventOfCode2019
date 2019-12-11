@@ -24,5 +24,4 @@ while((result = regex.exec(input)) !== null) {
   console.log(result[1]);
 }
 
-
 // ----------- GUESSES -------------------------
